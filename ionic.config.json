@@ -1,0 +1,12 @@
+{
+  "name": "proxy-example",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://207.38.82.139:8001"
+    }
+  ]
+}
