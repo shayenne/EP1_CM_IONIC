@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Seminários - IME - USP</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -40,6 +40,11 @@
   </ion-list>
 
   <div padding>
-  <button (click)="clicked()">LOGIN</button>
+  <button (click)="loginUser()">LOGIN</button>
 </div>
+<div *ngIf="loginFailed">
+      <h2 class="fail-message">Seu NUSP ou senha estão incorretos.</h2>
+    </div>
+
+    <button ion-button block outline (click)="addStudent()">Ainda não sou cadastrado</button>
 </ion-content>

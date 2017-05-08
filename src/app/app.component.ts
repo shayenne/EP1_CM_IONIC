@@ -7,6 +7,11 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { HomeTeacherPage } from '../pages/home-teacher-page/home-teacher-page';
 import { ListSeminarPage } from '../pages/list-seminar-page/list-seminar-page';
+import { StudentChangePage } from '../pages/student-change-page/student-change-page';
+import { StudentRegisterPage } from '../pages/student-register-page/student-register-page';
+import { TeacherChangePage } from '../pages/teacher-change-page/teacher-change-page';
+import { TeacherRegisterPage } from '../pages/teacher-register-page/teacher-register-page';
+//import {ShareService} from './pages/services/ShareService';
 
 @Component({
   templateUrl: 'app.html'

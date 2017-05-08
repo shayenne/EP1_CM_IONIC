@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <p><button ion-button>Alterar Cadastro</button></p>
-  <p><button (click)="listSeminar()" ion-button>Listar Seminários</button></p>
-  <p><button ion-button>Sair</button></p>
-  <p><button (click)="atalho()" ion-button>Atalho para HomeTeacher</button></p>
+  <p><button ion-button (click)="studentChange()">Alterar Cadastro</button></p>
+  <p><button ion-button (click)="listSeminar()">Listar Seminários</button></p>
+  <p><button ion-button (click)="exit()">Sair</button></p>
 </ion-content>

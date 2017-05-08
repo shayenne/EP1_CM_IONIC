@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 268:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_seminar_page__ = __webpack_require__(101);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListSeminarPageModule", function() { return ListSeminarPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__teacher_register_page__ = __webpack_require__(275);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherRegisterPageModule", function() { return TeacherRegisterPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ListSeminarPageModule = (function () {
-    function ListSeminarPageModule() {
+var TeacherRegisterPageModule = (function () {
+    function TeacherRegisterPageModule() {
     }
-    return ListSeminarPageModule;
+    return TeacherRegisterPageModule;
 }());
-ListSeminarPageModule = __decorate([
+TeacherRegisterPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__list_seminar_page__["a" /* ListSeminarPage */],
+            __WEBPACK_IMPORTED_MODULE_2__teacher_register_page__["a" /* TeacherRegisterPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__list_seminar_page__["a" /* ListSeminarPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__teacher_register_page__["a" /* TeacherRegisterPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__list_seminar_page__["a" /* ListSeminarPage */]
+            __WEBPACK_IMPORTED_MODULE_2__teacher_register_page__["a" /* TeacherRegisterPage */]
         ]
     })
-], ListSeminarPageModule);
+], TeacherRegisterPageModule);
 
-//# sourceMappingURL=list-seminar-page.module.js.map
+//# sourceMappingURL=teacher-register-page.module.js.map
 
 /***/ })
 
