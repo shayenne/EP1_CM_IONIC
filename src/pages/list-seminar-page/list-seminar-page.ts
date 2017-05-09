@@ -18,7 +18,6 @@ export class ListSeminarPage {
 
   public feeds: Array<string>;
   private url: string = "http://207.38.82.139:8001/seminar";
-  //private url: string = "https://www.reddit.com/new.json";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.http.get(this.url).map(res =>
@@ -29,7 +28,6 @@ export class ListSeminarPage {
     console.log("o que recebi");
     console.log(data);
     this.feeds = data.data;
-    //console.log(data.name);
   });
   }
 

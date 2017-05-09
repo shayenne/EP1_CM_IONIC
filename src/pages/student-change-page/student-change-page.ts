@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ToastController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the StudentChangePage page.
@@ -22,10 +23,14 @@ export class StudentChangePage {
   newName: string;
   newPass: string;
   private url: string = "http://207.38.82.139:8001/student/edit"
+  private getStudent: string = "http://207.38.82.139:8001/student/get/"
+
+  params: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, http: Http, public toastCtrl: ToastController) {
     this.http = http;
     this.nav = navCtrl;
+    this.nusp = this.navParams.get("nusp");
   }
 
   ionViewDidLoad() {
@@ -38,7 +43,7 @@ export class StudentChangePage {
 
     let teste = new FormData();
 
-    teste.append("nusp", "1234");
+    teste.append("nusp", this.nusp);
     teste.append("pass", this.newPass);
     teste.append("name", this.newName);
 
@@ -48,7 +53,7 @@ export class StudentChangePage {
         console.log(data);
         if(data.message == null) {
           console.log("Alterado com sucesso");
-          this.presentToastSuccess()
+          this.presentToastSuccess();
         }
         else {
           console.log("Não foi possível alterar os dados");
@@ -67,7 +72,20 @@ export class StudentChangePage {
       duration: 2000
     });
     toast.present();
-    this.nav.pop();
+    // Get student data
+    this.http.get(this.getStudent+""+this.nusp).map(res =>
+      //console.log(res.json());
+      res.json()
+    )
+    .subscribe(data => {
+      console.log("o que recebi");
+      console.log(data);
+      this.params = data.data;
+      console.log(this.params);
+      // Need to be here, because post and get are assynchronous
+      this.nav.setRoot(HomePage, this.params);
+    });
+
   }
 
   presentToastFailed() {

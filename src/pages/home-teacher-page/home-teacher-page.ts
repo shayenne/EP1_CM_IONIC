@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
-import { ListSeminarPage } from '../list-seminar-page/list-seminar-page'
-import { TeacherChangePage } from '../teacher-change-page/teacher-change-page'
-import { TeacherRegisterPage } from '../teacher-register-page/teacher-register-page'
-
+import { ListSeminarTeacherPage } from '../list-seminar-teacher-page/list-seminar-teacher-page';
+import { TeacherChangePage } from '../teacher-change-page/teacher-change-page';
+import { TeacherRegisterPage } from '../teacher-register-page/teacher-register-page';
+import { SeminarDetailsPage } from '../seminar-details-page/seminar-details-page';
 /**
  * Generated class for the HomeTeacherPage page.
  *
@@ -20,9 +20,12 @@ import { TeacherRegisterPage } from '../teacher-register-page/teacher-register-p
 export class HomeTeacherPage {
 
   nav: any;
+  name: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.nav = navCtrl;
+    this.name = this.navParams.get("name");
+    console.log(this.name);
   }
 
   ionViewDidLoad() {
@@ -30,15 +33,19 @@ export class HomeTeacherPage {
   }
 
   listSeminar() {
-    this.nav.push(ListSeminarPage);
+    this.nav.push(ListSeminarTeacherPage);
   }
 
   teacherChange() {
-    this.nav.push(TeacherChangePage);
+    this.nav.push(TeacherChangePage, this.navParams);
   }
 
   teacherAdd() {
     this.nav.push(TeacherRegisterPage);
+  }
+
+  atalho() {
+    this.nav.push(SeminarDetailsPage, {"id":"2","name":"Teste"})
   }
 
   exit() {

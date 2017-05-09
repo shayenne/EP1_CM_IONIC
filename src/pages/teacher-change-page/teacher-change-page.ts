@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ToastController } from 'ionic-angular';
+import { HomeTeacherPage } from '../home-teacher-page/home-teacher-page';
 
 /**
  * Generated class for the TeacherChangePage page.
@@ -21,11 +22,14 @@ export class TeacherChangePage {
   nusp: string;
   newName: string;
   newPass: string;
+  params: string;
   private url: string = "http://207.38.82.139:8001/teacher/edit"
+  private getTeacher: string = "http://207.38.82.139:8001/teacher/get/"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, http: Http, public toastCtrl: ToastController) {
     this.http = http;
     this.nav = navCtrl;
+    this.nusp = this.navParams.get("nusp");
   }
 
   ionViewDidLoad() {
@@ -38,7 +42,7 @@ export class TeacherChangePage {
 
     let teste = new FormData();
 
-    teste.append("nusp", "1111");
+    teste.append("nusp", this.nusp);
     teste.append("pass", this.newPass);
     teste.append("name", this.newName);
 
@@ -67,7 +71,19 @@ export class TeacherChangePage {
       duration: 2000
     });
     toast.present();
-    this.nav.pop();
+    // Get teacher data
+    this.http.get(this.getTeacher+""+this.nusp).map(res =>
+      //console.log(res.json());
+      res.json()
+    )
+    .subscribe(data => {
+      console.log("o que recebi");
+      console.log(data);
+      this.params = data.data;
+      console.log(this.params);
+      // Need to be here, because post and get are assynchronous
+      this.nav.setRoot(HomeTeacherPage, this.params);
+    });
   }
 
   presentToastFailed() {

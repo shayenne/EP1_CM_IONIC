@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-  <p><button ion-button (click)="studentChange()">Alterar Cadastro</button></p>
-  <p><button ion-button (click)="listSeminar()">Listar Seminários</button></p>
-  <p><button ion-button (click)="exit()">Sair</button></p>
+  <p text-center>Bem vind@, {{name}}</p>
+  <p><button ion-button block (click)="studentChange()">Alterar Cadastro</button></p>
+  <p><button ion-button block (click)="listSeminar()">Listar Seminários</button></p>
+  <p text-center><button ion-button fab-center (click)="exit()">Sair</button></p>
 </ion-content>

@@ -28,11 +28,15 @@ export class LoginPage {
   public feeds: Array<string>;
   private urlStudent: string = "http://207.38.82.139:8001/login/student";
   private urlTeacher: string = "http://207.38.82.139:8001/login/teacher";
+  private getStudent: string = "http://207.38.82.139:8001/student/get/"//[:nusp]
+  private getTeacher: string = "http://207.38.82.139:8001/teacher/get/"//[:nusp]
+
 
   public body: any;
   public headers: any;
   public loginFailed: any;
   public http: any;
+  public params: any;
 
   constructor(navCtrl: NavController, navParams: NavParams, http: Http) {
     this.nav = navCtrl;
@@ -54,11 +58,6 @@ export class LoginPage {
       headers.append('Content-Type', 'application/json;charset=UTF-8');
       let options= new RequestOptions({headers: headers});
 
-      var data = JSON.stringify({
-        nusp:this.nusp,
-        pass:this.pass
-      });
-
       let teste = new FormData();
 
       teste.append("nusp", this.nusp);
@@ -70,7 +69,20 @@ export class LoginPage {
           console.log(data);
           if (data.success) {
             console.log("DEU CERTO MESMO!!");
-            this.nav.setRoot(HomePage);
+            // Get student data
+            this.http.get(this.getStudent+""+this.nusp).map(res =>
+              //console.log(res.json());
+              res.json()
+            )
+            .subscribe(data => {
+              console.log("o que recebi");
+              console.log(data);
+              this.params = data.data;
+              console.log(this.params);
+              // Need to be here, because post and get are assynchronous
+              this.nav.setRoot(HomePage, this.params);
+            });
+
           }
           else {
             this.loginFailed = true;
@@ -86,7 +98,18 @@ export class LoginPage {
           console.log(data)
           if (data.success) {
             console.log("DEU CERTO MESMO!!");
-            this.nav.setRoot(HomeTeacherPage);
+            // Get teacher data
+            this.http.get(this.getTeacher+""+this.nusp).map(res =>
+              //console.log(res.json());
+              res.json()
+            )
+            .subscribe(data => {
+              console.log("o que recebi");
+              console.log(data);
+              this.params = data.data;
+              // Need to be here, because post and get are assynchronous
+              this.nav.setRoot(HomeTeacherPage, this.params);
+            });
           }
           else {
             this.loginFailed = true;

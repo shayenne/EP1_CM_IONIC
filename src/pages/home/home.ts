@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -17,9 +17,13 @@ export class HomePage {
   nav: NavController;
   listSeminarPage = ListSeminarPage;
   studentChangePage = StudentChangePage;
+  name: string;
 
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.nav = navCtrl;
+    this.name = this.navParams.get("name");
+    console.log(this.name);
   }
 
   listSeminar() {
@@ -27,7 +31,7 @@ export class HomePage {
   }
 
   studentChange() {
-    this.nav.push(this.studentChangePage);
+    this.nav.push(this.studentChangePage, this.navParams);
   }
 
   exit() {
