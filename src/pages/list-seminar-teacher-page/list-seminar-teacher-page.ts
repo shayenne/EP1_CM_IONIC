@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpModule, Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { SeminarDetailsPage } from '../seminar-details-page/seminar-details-page';
+
 /**
  * Generated class for the ListSeminarTeacherPage page.
  *
@@ -16,7 +18,7 @@ import 'rxjs/add/operator/map';
 })
 export class ListSeminarTeacherPage {
 
-  public feeds: Array<string>;
+  public items: Array<string>;
   private url: string = "http://207.38.82.139:8001/seminar";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
@@ -27,12 +29,17 @@ export class ListSeminarTeacherPage {
     .subscribe(data => {
       console.log("o que recebi");
       console.log(data);
-      this.feeds = data.data;
+      this.items = data.data;
     });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListSeminarTeacherPage');
+  }
+
+  details(item) {
+    console.log(item);
+    this.navCtrl.push(SeminarDetailsPage, item);
   }
 
 }

@@ -15,4 +15,12 @@
 
 <ion-content padding>
 <p>Título: {{ title }}</p>
+
+<p><button ion-button block> Alterar seminário </button></p>
+<p><button ion-button block *ngIf="students == null"> Remover seminário </button></p> <!--Mostrar apenas se não tiver alunos-->
+<ion-list>
+   <ion-item *ngFor="let student of students">
+      {{student.name}}
+   </ion-item>
+ </ion-list>
 </ion-content>

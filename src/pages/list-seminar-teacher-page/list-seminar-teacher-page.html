@@ -7,17 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ListSeminarTeacherPage</ion-title>
+    <ion-title>Lista de Seminários</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-fab right top edge>
+    <button ion-fab color="orange"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
-     <ion-item *ngFor="let feed of feeds">
-       <button ion-button clear>
-        {{feed.name}}
+     <ion-item *ngFor="let item of items">
+       <button ion-button clear (click)="details(item)">
+        {{item.name}}
        </button>
      </ion-item>
    </ion-list>

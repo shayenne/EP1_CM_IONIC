@@ -44,9 +44,6 @@ export class HomeTeacherPage {
     this.nav.push(TeacherRegisterPage);
   }
 
-  atalho() {
-    this.nav.push(SeminarDetailsPage, {"id":"2","name":"Teste"})
-  }
 
   exit() {
     console.log("Professor finalizou a sessão.");
