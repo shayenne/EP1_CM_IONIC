@@ -4,7 +4,7 @@ import { HttpModule, Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SeminarDetailsPage } from '../seminar-details-page/seminar-details-page';
-
+import { SeminarRegisterPage } from '../seminar-register-page/seminar-register-page';
 /**
  * Generated class for the ListSeminarTeacherPage page.
  *
@@ -40,6 +40,10 @@ export class ListSeminarTeacherPage {
   details(item) {
     console.log(item);
     this.navCtrl.push(SeminarDetailsPage, item);
+  }
+
+  add() {
+    this.navCtrl.push(SeminarRegisterPage);
   }
 
 }

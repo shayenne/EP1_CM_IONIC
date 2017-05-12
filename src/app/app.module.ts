@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule, Http } from '@angular/http';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,6 +18,8 @@ import { StudentRegisterPage } from '../pages/student-register-page/student-regi
 import { TeacherChangePage } from '../pages/teacher-change-page/teacher-change-page';
 import { TeacherRegisterPage } from '../pages/teacher-register-page/teacher-register-page';
 import { SeminarDetailsPage } from '../pages/seminar-details-page/seminar-details-page';
+import { SeminarRegisterPage } from '../pages/seminar-register-page/seminar-register-page';
+import { BarcodeScannerPage } from '../pages/barcode-scanner-page/barcode-scanner-page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +39,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StudentRegisterPage,
     TeacherChangePage,
     TeacherRegisterPage,
-    SeminarDetailsPage
+    SeminarDetailsPage,
+    SeminarRegisterPage,
+    BarcodeScannerPage
   ],
   imports: [
     BrowserModule,
@@ -58,11 +63,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StudentRegisterPage,
     TeacherChangePage,
     TeacherRegisterPage,
-    SeminarDetailsPage
+    SeminarDetailsPage,
+    SeminarRegisterPage,
+    BarcodeScannerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

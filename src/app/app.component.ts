@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { HomeTeacherPage } from '../pages/home-teacher-page/home-teacher-page';
@@ -13,6 +14,8 @@ import { StudentRegisterPage } from '../pages/student-register-page/student-regi
 import { TeacherChangePage } from '../pages/teacher-change-page/teacher-change-page';
 import { TeacherRegisterPage } from '../pages/teacher-register-page/teacher-register-page';
 import { SeminarDetailsPage } from '../pages/seminar-details-page/seminar-details-page';
+import { SeminarRegisterPage } from '../pages/seminar-register-page/seminar-register-page';
+import { BarcodeScannerPage } from '../pages/barcode-scanner-page/barcode-scanner-page';
 
 @Component({
   templateUrl: 'app.html'

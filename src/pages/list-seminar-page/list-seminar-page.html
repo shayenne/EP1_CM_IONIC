@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ListSeminarPage</ion-title>
+    <ion-title>Lista de seminários</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let feed of feeds">
-      <button ion-button clear>
+      <button ion-button clear (click)="details(feed.id)">
        {{feed.name}}
       </button>
      </ion-item>

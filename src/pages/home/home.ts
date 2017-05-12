@@ -27,7 +27,7 @@ export class HomePage {
   }
 
   listSeminar() {
-    this.nav.push(this.listSeminarPage);
+    this.nav.push(this.listSeminarPage, this.navParams);
   }
 
   studentChange() {

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpModule, Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { BarcodeScannerPage } from '../barcode-scanner-page/barcode-scanner-page';
+
 /**
  * Generated class for the ListSeminarPage page.
  *
@@ -18,8 +20,10 @@ export class ListSeminarPage {
 
   public feeds: Array<string>;
   private url: string = "http://207.38.82.139:8001/seminar";
+  nusp: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+    this.nusp = this.navParams.get("nusp");
     this.http.get(this.url).map(res =>
       //console.log(res.json());
       res.json()
@@ -33,6 +37,11 @@ export class ListSeminarPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListSeminarPage');
+  }
+
+  details(item) {
+    console.log(item);
+    this.navCtrl.push(BarcodeScannerPage, item.concat({"nusp":this.nusp}));
   }
 
 }
