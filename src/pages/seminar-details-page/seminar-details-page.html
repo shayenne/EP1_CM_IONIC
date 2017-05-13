@@ -16,10 +16,42 @@
 <ion-content padding>
 <p>Título: {{ title }}</p>
 
-<p><button ion-button block> Alterar seminário </button></p>
-<p><button ion-button block *ngIf="students == null"> Remover seminário </button></p> <!--Mostrar apenas se não tiver alunos-->
+<p><button ion-button block *ngIf="students == null" (click)="changeSeminar(id)"> Alterar seminário </button></p>
+<p><button ion-button block *ngIf="students == null" (click)="removeSeminar(id)"> Remover seminário </button></p> <!--Mostrar apenas se não tiver alunos-->
 <p><button ion-button block (click)="confirmQRCode(id)"> Confirmar presenças no seminário </button></p>
-<div text-center>{{ qrcode }}</div>
+
+
+ <div padding>
+  <ion-segment [(ngModel)]="mode">
+    <ion-segment-button value="qrcode" (click)="showQRCode()">
+      QR-Code
+    </ion-segment-button>
+    <ion-segment-button value="manual" (click)="showNoConfirmed(id)">
+      Manual
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="mode">
+  <ion-list *ngSwitchCase="'qrcode'" >
+    <ion-item>
+      <!--{{ qrcode }}-->
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'manual'" >
+    <ion-item>
+      <h2>ALUNOS NÃO CONFIRMADOS</h2>
+    </ion-item>
+
+    <ion-item *ngFor="let student of newStudents">
+        {{student.student_nusp}}
+    </ion-item>
+  </ion-list>
+</div>
+
+<h3>ALUNOS CONFIRMADOS</h3>
+
 <ion-list>
    <ion-item *ngFor="let student of students">
       {{student.student_nusp}}

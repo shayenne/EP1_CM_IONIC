@@ -41,7 +41,7 @@ export class LoginPage {
   constructor(navCtrl: NavController, navParams: NavParams, http: Http) {
     this.nav = navCtrl;
     this.http = http;
-    this.user = "Aluno";
+    this.user = "Professor";
     this.loginFailed = false;
   }
 

@@ -27,7 +27,7 @@ export class SeminarRegisterPage {
 
   addSeminar() {
 
-    console.log("Adicionando dados de estudante");
+    console.log("Adicionando dados de seminário");
 
     let teste = new FormData();
 

@@ -23,6 +23,7 @@ export class SeminarDetailsPage {
   title: string;
   id: string;
   students: any;
+  newStudents: any;
   qrcode: any;
   url: string = "http://207.38.82.139:8001/attendence/listStudents";
 
@@ -33,8 +34,6 @@ export class SeminarDetailsPage {
     let data = new FormData();
 
     data.append("seminar_id", this.id);
-
-    this.qrcode = this.barcode.encode(this.barcode.Encode.TEXT_TYPE, "" + this.id );
 
     this.students = null;
     this.http.post(this.url, data).map(res =>
@@ -65,5 +64,44 @@ export class SeminarDetailsPage {
     this.navCtrl.push(BarcodeScannerPage, id);
   }
 
+  showQRCode() {
+      this.qrcode = this.barcode.encode(this.barcode.Encode.TEXT_TYPE, "" + this.id );
+  }
+
+  showNoConfirmed(id) {
+    // Pegar a lista de não confirmados
+    // Transformar em botão e confirmar
+    let data = new FormData();
+
+    data.append("seminar_id", this.id);
+
+    this.newStudents = null;
+    this.http.post(this.url, data).map(res =>
+      //console.log(res.json());
+      res.json()
+    )
+    .subscribe(data => {
+      console.log("Resposta do post alunos nao confirmados do seminario");
+      console.log(data);
+      if (data != null) {
+          this.newStudents = data.data;
+          console.log(data.data.student_nusp);
+      }
+      else {
+        console.log("data é undefined");
+      }
+    }, err=>{
+      console.log("Error!:", err.json());
+      console.log("DEU ERRADO");
+    });
+  }
+
+  removeSeminar(id) {
+    // Remover seminário
+  }
+
+  changeSeminar(id) {
+    // Criar nova página???
+  }
 
 }
