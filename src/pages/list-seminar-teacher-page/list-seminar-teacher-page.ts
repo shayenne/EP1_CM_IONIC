@@ -22,15 +22,20 @@ export class ListSeminarTeacherPage {
   private url: string = "http://207.38.82.139:8001/seminar";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+
+  }
+
+  ionViewDidEnter() {
+      console.log("Showing the first page!");
       this.http.get(this.url).map(res =>
-        //console.log(res.json());
-        res.json()
-    )
-    .subscribe(data => {
-      console.log("o que recebi");
-      console.log(data);
-      this.items = data.data;
-    });
+          //console.log(res.json());
+          res.json()
+      )
+      .subscribe(data => {
+        console.log("o que recebi");
+        console.log(data);
+        this.items = data.data;
+      });
   }
 
   ionViewDidLoad() {

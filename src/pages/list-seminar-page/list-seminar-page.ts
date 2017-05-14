@@ -24,15 +24,19 @@ export class ListSeminarPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.nusp = this.navParams.get("nusp");
+
+  }
+
+  ionViewDidEnter() {
     this.http.get(this.url).map(res =>
       //console.log(res.json());
       res.json()
-  )
-  .subscribe(data => {
-    console.log("o que recebi");
-    console.log(data);
-    this.feeds = data.data;
-  });
+    )
+    .subscribe(data => {
+      console.log("o que recebi");
+      console.log(data);
+      this.feeds = data.data;
+    });
   }
 
   ionViewDidLoad() {
