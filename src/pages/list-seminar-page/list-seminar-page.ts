@@ -18,7 +18,7 @@ import { BarcodeScannerPage } from '../barcode-scanner-page/barcode-scanner-page
 })
 export class ListSeminarPage {
 
-  public feeds: Array<string>;
+  public items: Array<string>;
   private url: string = "http://207.38.82.139:8001/seminar";
   nusp: string;
 
@@ -35,7 +35,7 @@ export class ListSeminarPage {
     .subscribe(data => {
       console.log("o que recebi");
       console.log(data);
-      this.feeds = data.data;
+      this.items = data.data;
     });
   }
 
@@ -45,7 +45,7 @@ export class ListSeminarPage {
 
   details(item) {
     console.log(item);
-    this.navCtrl.push(BarcodeScannerPage, item.concat({"nusp":this.nusp}));
+    this.navCtrl.push(BarcodeScannerPage, {"id":item.id, "nusp":this.nusp});
   }
 
 }

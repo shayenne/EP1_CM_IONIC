@@ -41,7 +41,7 @@ export class LoginPage {
   constructor(navCtrl: NavController, navParams: NavParams, http: Http) {
     this.nav = navCtrl;
     this.http = http;
-    this.user = "Professor";
+    this.user = "Aluno"; // Default selection
     this.loginFailed = false;
   }
 

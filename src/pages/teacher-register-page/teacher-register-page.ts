@@ -9,24 +9,20 @@ import { ToastController } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
 @IonicPage()
 @Component({
   selector: 'page-teacher-register-page',
   templateUrl: 'teacher-register-page.html',
 })
 export class TeacherRegisterPage {
-  http: any;
-  nav: any;
-
-  nusp: string;
-  newName: string;
-  newPass: string;
-  newNusp: string;
+  public nusp: string;
+  public newName: string;
+  public newPass: string;
+  public newNusp: string;
   private url: string = "http://207.38.82.139:8001/teacher/add"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, http: Http, public toastCtrl: ToastController) {
-    this.http = http;
-    this.nav = navCtrl;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -34,21 +30,20 @@ export class TeacherRegisterPage {
   }
 
   addData() {
-
     console.log("Alterando dados de usuário");
 
-    let teste = new FormData();
+    let form = new FormData();
 
-    teste.append("nusp", this.newNusp);
-    teste.append("pass", this.newPass);
-    teste.append("name", this.newName);
+    form.append("nusp", this.newNusp);
+    form.append("pass", this.newPass);
+    form.append("name", this.newName);
 
 
-    this.http.post(this.url, teste).map(res=>res.json()).subscribe(data=>{
+    this.http.post(this.url, form).map(res=>res.json()).subscribe(data=>{
         console.log("DEU CERTO");
         console.log(data);
         if(data.message == null) {
-          console.log("Adicionado com sucesso");
+          console.log("Professor adicionado com sucesso");
           this.presentToastSuccess()
         }
         else {
@@ -57,9 +52,7 @@ export class TeacherRegisterPage {
         }
       }, err=>{
         console.log("Error!:", err.json());
-        console.log("DEU ERRADO");
       });
-
   }
 
   presentToastSuccess() {
@@ -68,7 +61,7 @@ export class TeacherRegisterPage {
       duration: 2000
     });
     toast.present();
-    this.nav.pop();
+    this.navCtrl.pop();
   }
 
   presentToastFailed() {
@@ -78,6 +71,5 @@ export class TeacherRegisterPage {
     });
     toast.present();
   }
-
 
 }

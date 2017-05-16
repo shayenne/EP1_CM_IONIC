@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-
 /**
  * Generated class for the StudentChangePage page.
  *
@@ -16,20 +15,15 @@ import { HomePage } from '../home/home';
   templateUrl: 'student-change-page.html',
 })
 export class StudentChangePage {
-  http: any;
-  nav: any;
-
-  nusp: string;
-  newName: string;
-  newPass: string;
+  public nusp: string;
+  public newName: string;
+  public newPass: string;
   private url: string = "http://207.38.82.139:8001/student/edit"
   private getStudent: string = "http://207.38.82.139:8001/student/get/"
 
   params: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, http: Http, public toastCtrl: ToastController) {
-    this.http = http;
-    this.nav = navCtrl;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
     this.nusp = this.navParams.get("nusp");
   }
 
@@ -38,17 +32,15 @@ export class StudentChangePage {
   }
 
   changeData() {
-
     console.log("Alterando dados de usuário");
 
-    let teste = new FormData();
+    let form = new FormData();
 
-    teste.append("nusp", this.nusp);
-    teste.append("pass", this.newPass);
-    teste.append("name", this.newName);
+    form.append("nusp", this.nusp);
+    form.append("pass", this.newPass);
+    form.append("name", this.newName);
 
-
-    this.http.post(this.url, teste).map(res=>res.json()).subscribe(data=>{
+    this.http.post(this.url, form).map(res=>res.json()).subscribe(data=>{
         console.log("DEU CERTO");
         console.log(data);
         if(data.message == null) {
@@ -63,7 +55,6 @@ export class StudentChangePage {
         console.log("Error!:", err.json());
         console.log("DEU ERRADO");
       });
-
   }
 
   presentToastSuccess() {
@@ -83,9 +74,8 @@ export class StudentChangePage {
       this.params = data.data;
       console.log(this.params);
       // Need to be here, because post and get are assynchronous
-      this.nav.setRoot(HomePage, this.params);
+      this.navCtrl.setRoot(HomePage, this.params);
     });
-
   }
 
   presentToastFailed() {

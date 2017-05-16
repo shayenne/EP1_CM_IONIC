@@ -14,27 +14,24 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'seminar-register-page.html',
 })
 export class SeminarRegisterPage {
-  name: string;
+  public name: string;
   private url: string = "http://207.38.82.139:8001/seminar/add"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
   }
 
-
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad SeminarRegisterPage');
-    }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SeminarRegisterPage');
+  }
 
   addSeminar() {
-
     console.log("Adicionando dados de seminário");
 
-    let teste = new FormData();
+    let form = new FormData();
 
-    teste.append("name", this.name);
+    form.append("name", this.name);
 
-
-    this.http.post(this.url, teste).map(res=>res.json()).subscribe(data=>{
+    this.http.post(this.url, form).map(res=>res.json()).subscribe(data=>{
         console.log("DEU CERTO");
         console.log(data);
         if(data.message == null) {

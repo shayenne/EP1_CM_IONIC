@@ -16,9 +16,10 @@
 <ion-content padding>
 <p>Título: {{ title }}</p>
 
+<!--Mostrar apenas se não tiver alunos-->
 <p><button ion-button block *ngIf="students == null" (click)="changeSeminar(id)"> Alterar seminário </button></p>
-<p><button ion-button block *ngIf="students == null" (click)="removeSeminar(id)"> Remover seminário </button></p> <!--Mostrar apenas se não tiver alunos-->
-<p><button ion-button block (click)="confirmQRCode(id)"> Confirmar presenças no seminário </button></p>
+<p><button ion-button block *ngIf="students == null" (click)="removeSeminar(id)"> Remover seminário </button></p>
+
 
 
  <div padding>
@@ -26,7 +27,7 @@
     <ion-segment-button value="qrcode" (click)="showQRCode()">
       QR-Code
     </ion-segment-button>
-    <ion-segment-button value="manual" (click)="showNoConfirmed(id)">
+    <ion-segment-button value="manual">
       Manual
     </ion-segment-button>
   </ion-segment>
@@ -45,7 +46,9 @@
     </ion-item>
 
     <ion-item *ngFor="let student of newStudents">
-        {{student.student_nusp}}
+      <button ion-button clear (click)="confirmStudent(student.nusp)">
+        {{student.name}}
+      </button>
     </ion-item>
   </ion-list>
 </div>
@@ -53,8 +56,8 @@
 <h3>ALUNOS CONFIRMADOS</h3>
 
 <ion-list>
-   <ion-item *ngFor="let student of students">
-      {{student.student_nusp}}
+   <ion-item *ngFor="let student of oldStudents">
+      {{student.name}}
    </ion-item>
  </ion-list>
 </ion-content>

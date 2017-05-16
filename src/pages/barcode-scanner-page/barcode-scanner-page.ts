@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ToastController } from 'ionic-angular';
-
 /**
  * Generated class for the BarcodeScannerPage page.
  *
@@ -16,10 +15,12 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'barcode-scanner-page.html',
 })
 export class BarcodeScannerPage {
-  id: any;
-  text: any;
-  format: any;
-  nusp: any;
+  public id: any;
+  public text: any;
+  public format: any;
+  public nusp: any;
+  public qrConfirm: any = false;
+  public errorData: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner,
     public toastCtrl: ToastController, public http: Http) {
@@ -31,47 +32,78 @@ export class BarcodeScannerPage {
     console.log('ionViewDidLoad BarcodeScannerPage');
   }
 
+  ionViewDidEnter() {
+    this.qrConfirm = false;
+  }
+
   scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
      console.log("LIDO DO QRCODE"+barcodeData);
-     this.text = barcodeData.text;
+     if (this.id != barcodeData.text) {
+       this.errorData = "QR-Code não corresponde ao seminário selecionado";
+       return;
+     }
      this.format = barcodeData.format;
+     this.qrConfirm = true;
+     this.confirmSeminar();
     }, (err) => {
       console.log("Err:"+err);
     });
   }
 
-  manualConfirm() {
+  confirmSeminar() {
     // Send a student confirm to server with flag false
     // Wait teacher confirm manually
-    let urlConfirm = "http://207.38.82.139:8001/attendence/submit"
-    let data = new FormData();
+    console.log("Quero fazer confirmação");
+    let urlConfirm = "http://207.38.82.139:8001/attendence/submit";
 
-    data.append("nusp", this.nusp);
-    data.append("pass", this.id);
-    data.append("data", "{confirmed:0}");
+    let form = new FormData();
+    form.append("nusp", this.nusp);
+    form.append("seminar_id", this.id);
 
-    this.http.post(urlConfirm, data).map(res=>res.json()).subscribe(data=>{
-        console.log("DEU CERTO");
+    if (this.qrConfirm) {
+      console.log("QR true")
+      form.append("confirmed",1);
+    }
+    else {
+      form.append("confirmed",0);
+    }
+
+    console.log(form);
+    this.http.post(urlConfirm, form).map(res=>res.json()).subscribe(data=>{
         console.log(data);
         if(data.message == null) {
           console.log("Pedido de confirmação enviado com sucesso");
-          this.presentToastSuccess();
+          if (this.qrConfirm) {
+            this.presentToastSuccessQR();
+          }
+          else {
+            this.presentToastSuccess();
+          }
         }
         else {
           console.log("Não foi enviar o pedido de confirmação");
           this.presentToastFailed();
         }
       }, err=>{
+        this.errorData = "QR-Code não corresponde a nenhum seminário";
         console.log("Error!:", err.json());
-        console.log("DEU ERRADO");
       });
   }
 
   presentToastSuccess() {
     let toast = this.toastCtrl.create({
       message: 'Pedido de confirmação enviado com sucesso. Aguarde a confirmação do professor.',
-      duration: 2000
+      duration: 3000
+    });
+    toast.present();
+    this.navCtrl.pop();
+  }
+
+  presentToastSuccessQR() {
+    let toast = this.toastCtrl.create({
+      message: 'Confirmação enviada com sucesso.',
+      duration: 3000
     });
     toast.present();
     this.navCtrl.pop();

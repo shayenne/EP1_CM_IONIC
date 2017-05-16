@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import { LoginPage } from '../login/login'
 import { ListSeminarPage } from '../list-seminar-page/list-seminar-page'
 import { StudentChangePage } from '../student-change-page/student-change-page'
+import { ViewedSeminarPage } from '../viewed-seminar-page/viewed-seminar-page';
+
 
 @Component({
   selector: 'page-home',
@@ -27,11 +29,15 @@ export class HomePage {
   }
 
   listSeminar() {
-    this.nav.push(this.listSeminarPage, this.navParams);
+    this.nav.push(ListSeminarPage, this.navParams);
   }
 
   studentChange() {
-    this.nav.push(this.studentChangePage, this.navParams);
+    this.nav.push(StudentChangePage, this.navParams);
+  }
+
+  viewedSeminar() {
+    this.nav.push(ViewedSeminarPage, this.navParams);
   }
 
   exit() {

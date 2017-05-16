@@ -19,7 +19,10 @@ import { TeacherChangePage } from '../pages/teacher-change-page/teacher-change-p
 import { TeacherRegisterPage } from '../pages/teacher-register-page/teacher-register-page';
 import { SeminarDetailsPage } from '../pages/seminar-details-page/seminar-details-page';
 import { SeminarRegisterPage } from '../pages/seminar-register-page/seminar-register-page';
+import { SeminarChangePage } from '../pages/seminar-change-page/seminar-change-page';
 import { BarcodeScannerPage } from '../pages/barcode-scanner-page/barcode-scanner-page';
+import { ViewedSeminarPage } from '../pages/viewed-seminar-page/viewed-seminar-page';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +44,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TeacherRegisterPage,
     SeminarDetailsPage,
     SeminarRegisterPage,
-    BarcodeScannerPage
+    SeminarChangePage,
+    BarcodeScannerPage,
+    ViewedSeminarPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TeacherRegisterPage,
     SeminarDetailsPage,
     SeminarRegisterPage,
-    BarcodeScannerPage
+    SeminarChangePage,
+    BarcodeScannerPage,
+    ViewedSeminarPage
   ],
   providers: [
     StatusBar,

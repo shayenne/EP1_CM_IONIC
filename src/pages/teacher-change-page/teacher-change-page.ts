@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { HomeTeacherPage } from '../home-teacher-page/home-teacher-page';
-
 /**
  * Generated class for the TeacherChangePage page.
  *
@@ -16,19 +15,14 @@ import { HomeTeacherPage } from '../home-teacher-page/home-teacher-page';
   templateUrl: 'teacher-change-page.html',
 })
 export class TeacherChangePage {
-  http: any;
-  nav: any;
-
-  nusp: string;
-  newName: string;
-  newPass: string;
-  params: string;
+  public nusp: string;
+  public newName: string;
+  public newPass: string;
+  public params: string;
   private url: string = "http://207.38.82.139:8001/teacher/edit"
   private getTeacher: string = "http://207.38.82.139:8001/teacher/get/"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, http: Http, public toastCtrl: ToastController) {
-    this.http = http;
-    this.nav = navCtrl;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
     this.nusp = this.navParams.get("nusp");
   }
 
@@ -37,17 +31,15 @@ export class TeacherChangePage {
   }
 
   changeData() {
-
     console.log("Alterando dados de usuário");
 
-    let teste = new FormData();
+    let form = new FormData();
 
-    teste.append("nusp", this.nusp);
-    teste.append("pass", this.newPass);
-    teste.append("name", this.newName);
+    form.append("nusp", this.nusp);
+    form.append("pass", this.newPass);
+    form.append("name", this.newName);
 
-
-    this.http.post(this.url, teste).map(res=>res.json()).subscribe(data=>{
+    this.http.post(this.url, form).map(res=>res.json()).subscribe(data=>{
         console.log("DEU CERTO");
         console.log(data);
         if(data.message == null) {
@@ -62,7 +54,6 @@ export class TeacherChangePage {
         console.log("Error!:", err.json());
         console.log("DEU ERRADO");
       });
-
   }
 
   presentToastSuccess() {
@@ -82,7 +73,7 @@ export class TeacherChangePage {
       this.params = data.data;
       console.log(this.params);
       // Need to be here, because post and get are assynchronous
-      this.nav.setRoot(HomeTeacherPage, this.params);
+      this.navCtrl.setRoot(HomeTeacherPage, this.params);
     });
   }
 

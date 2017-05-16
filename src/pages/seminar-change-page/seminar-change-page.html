@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SeminarRegisterPage page.
+  Generated template for the StudentChangePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Cadastro de novo seminário</ion-title>
+    <ion-title>Alterar cadastro de seminário</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,13 +15,15 @@
 
 <ion-content padding>
   <ion-list>
+
     <ion-item>
-      <ion-label floating>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="name"></ion-input>
+      <ion-label floating>Novo nome</ion-label>
+      <ion-input type="text" [(ngModel)]="newName"></ion-input>
     </ion-item>
+
   </ion-list>
 
   <div padding>
-    <button ion-button block (click)="addSeminar()">Cadastrar Seminário</button>
+    <button ion-button block (click)="changeData()">Alterar</button>
   </div>
 </ion-content>

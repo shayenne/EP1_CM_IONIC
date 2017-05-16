@@ -14,9 +14,9 @@
 
 
 <ion-content padding>
-  <button ion-button block (click)="manualConfirm()">Pedir confirmação manual</button>
+  <button ion-button block (click)="confirmSeminar()">Pedir confirmação manual</button>
   <button ion-button block (click)="scan()">Confirmar via QRCode</button>
-  <div *ngIf=(text)>
-    <p> Resultado da leitura do QRCode: {{ text }}  e  {{ format }}</p>
+  <div *ngIf=(errorData)>
+    <p> Resultado da leitura: {{ errorData }}</p>
   </div>
 </ion-content>
