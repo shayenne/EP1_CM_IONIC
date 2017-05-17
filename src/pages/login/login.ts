@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http} from '@angular/http';
 import { HomePage } from '../home/home';
-import { TabsPage } from '../tabs/tabs';
 import { HomeTeacherPage } from '../home-teacher-page/home-teacher-page';
 import { StudentRegisterPage } from '../student-register-page/student-register-page';
 
@@ -52,19 +51,14 @@ export class LoginPage {
   loginUser() {
       console.log('CLICKED!!'+ this.user);
 
-      //Variables for post request
-      var headers = new Headers();
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/json;charset=UTF-8');
-      let options= new RequestOptions({headers: headers});
 
-      let teste = new FormData();
+      let form = new FormData();
 
-      teste.append("nusp", this.nusp);
-      teste.append("pass", this.pass);
+      form.append("nusp", this.nusp);
+      form.append("pass", this.pass);
 
       if (this.user == "Aluno") {
-        this.http.post(this.urlStudent, teste).map(res=>res.json()).subscribe(data=>{
+        this.http.post(this.urlStudent, form).map(res=>res.json()).subscribe(data=>{
           console.log("DEU CERTO");
           console.log(data);
           if (data.success) {
@@ -93,7 +87,7 @@ export class LoginPage {
         });
       }
       else {
-        this.http.post(this.urlTeacher, teste).map(res=>res.json()).subscribe(data=>{
+        this.http.post(this.urlTeacher, form).map(res=>res.json()).subscribe(data=>{
           console.log("DEU CERTO");
           console.log(data)
           if (data.success) {

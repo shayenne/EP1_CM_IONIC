@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http} from '@angular/http';
 import { ToastController } from 'ionic-angular';
-import { HomePage } from '../home/home';
 /**
  * Generated class for the StudentChangePage page.
  *
@@ -18,7 +17,7 @@ export class SeminarChangePage {
   public seminar_id: string;
   public newName: string;
   private url: string = "http://207.38.82.139:8001/seminar/edit"
-  private getSeminar: string = "http://207.38.82.139:8001/seminar/get/"
+  
 
   public params: any;
 

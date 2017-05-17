@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { HttpModule, Http } from '@angular/http';
+import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { SeminarChangePage } from '../seminar-change-page/seminar-change-page';
-import { BarcodeScannerPage } from '../barcode-scanner-page/barcode-scanner-page';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /**
  * Generated class for the SeminarDetailsPage page.

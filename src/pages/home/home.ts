@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login'
 import { ListSeminarPage } from '../list-seminar-page/list-seminar-page'
@@ -14,34 +12,28 @@ import { ViewedSeminarPage } from '../viewed-seminar-page/viewed-seminar-page';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // http://207.38.82.139:8001/teacher/get/[:nusp]
-//curl -H "Content-Type: application/json" -X POST -d '{"nusp":4321,"pass":4321, "name":"Doctor Who"}' http://207.38.82.139:8001/teacher/add
-  nav: NavController;
-  listSeminarPage = ListSeminarPage;
-  studentChangePage = StudentChangePage;
-  name: string;
 
+  public name: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.nav = navCtrl;
     this.name = this.navParams.get("name");
     console.log(this.name);
   }
 
   listSeminar() {
-    this.nav.push(ListSeminarPage, this.navParams);
+    this.navCtrl.push(ListSeminarPage, this.navParams);
   }
 
   studentChange() {
-    this.nav.push(StudentChangePage, this.navParams);
+    this.navCtrl.push(StudentChangePage, this.navParams);
   }
 
   viewedSeminar() {
-    this.nav.push(ViewedSeminarPage, this.navParams);
+    this.navCtrl.push(ViewedSeminarPage, this.navParams);
   }
 
   exit() {
     console.log("Estudante finalizou a sessão.");
-    this.nav.setRoot(LoginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 }

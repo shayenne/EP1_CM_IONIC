@@ -5,7 +5,6 @@ import { LoginPage } from '../login/login';
 import { ListSeminarTeacherPage } from '../list-seminar-teacher-page/list-seminar-teacher-page';
 import { TeacherChangePage } from '../teacher-change-page/teacher-change-page';
 import { TeacherRegisterPage } from '../teacher-register-page/teacher-register-page';
-import { SeminarDetailsPage } from '../seminar-details-page/seminar-details-page';
 /**
  * Generated class for the HomeTeacherPage page.
  *

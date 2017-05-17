@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { HomeTeacherPage } from '../home-teacher-page/home-teacher-page';
 /**
